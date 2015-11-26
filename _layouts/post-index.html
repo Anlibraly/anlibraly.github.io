@@ -1,0 +1,61 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+{% include head.html %}
+</head>
+
+<body id="post-index" {% if page.image.feature %}class="feature"{% endif %}>
+
+{% include browser-upgrade.html %}
+{% include navigation.html %}
+<div class="entry-header">
+  <!--{% if page.image.credit %}<div class="image-credit">Image source: <a href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></div>/.image-credit{% endif %}-->
+  {% if page.image.feature %}
+    <div class="entry-image">
+      <img id="headerPic">
+    </div><!-- /.entry-image -->
+  {% endif %}
+  <div class="header-title">
+    <div class="header-title-wrap">
+      <h1>{{ site.title }}</h1>
+      <h2>{{ page.title }}</h2>
+    </div><!-- /.header-title-wrap -->
+  </div><!-- /.header-title -->
+  <span id="headerPicDesc" style="position:absolute;right:5px;bottom:5px;color:rgb(204, 194, 194)"></span>
+</div><!-- /.entry-header -->
+<script type="text/javascript">
+  var picData = [{
+    src : '/images/hangzhou-1.jpg',
+    desc : '那年去玩'
+  },{
+    src : '/images/hangzhou-2.jpg',
+    desc : '晚上随手拍'
+  },{
+    src : '/images/yinhun.jpg',
+    desc : '男人不管多大内心都是少年哟~'
+  }],
+  picIndex = ((new Date).getDay()) % picData.length,
+  curDate = picData[picIndex],
+  headerPic = document.getElementById('headerPic'),
+  headerPicDesc = document.getElementById('headerPicDesc');
+
+  headerPic.setAttribute('src', curDate.src);    
+  headerPicDesc.innerHTML = curDate.desc;    
+</script>
+<div id="main" role="main">
+  {{ content }}
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    {% include footer.html %}
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+{% include scripts.html %}          
+
+</body>
+</html>

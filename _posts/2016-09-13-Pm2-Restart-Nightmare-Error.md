@@ -10,10 +10,13 @@ share: true
 ---
 
 线上服务nightmare使用pm2重启经常出现进程error，而使用stop && start的操作却可以正常重启，
-希望从PM2的源码追踪到问题原因。
+希望从PM2的源码追踪问题原因。
+
+<!--more-->
 
 1.在 bin/pm2.js 中 restart 操作支持传入与进程相关的信息然后又CLI中restart进程。
-`
+
+<pre><code>
 commander.command('restart <id|name|all|json|stdin...>')
   .option('--watch', 'Toggle watching folder for changes')
   .description('restart a process')
@@ -29,10 +32,11 @@ commander.command('restart <id|name|all|json|stdin...>')
       CLI.speedList(err ? 1 : 0);
     });
   });
-`
+</code></pre>
 
 2.在 lib/CLI.js 中的restart操作
-`
+
+<pre><code>
 CLI.restart = function(cmd, opts, cb) {
   //转存回调
   if (typeof(opts) == "function") {
@@ -79,9 +83,11 @@ CLI._operate = function(action_name, process_name, envs, cb) {
     }, function(err) {....});
   }
 }
-`
+</code></pre>
+
 2.在 lib/Satan.js 中的 executeRemote、notifyGod 操作
-`
+
+<pre><code>
 Satan.executeRemote = function executeRemote(method, env, fn) {
   ..........
   //最终到Satan中执行进程脚本
@@ -98,10 +104,11 @@ Satan.notifyGod = function(action_name, id, cb) {
     return cb ? cb() : false;
   });
 };
-`
+</code></pre>
 
 3.pm2-axon-rpc/lib/client.js 中的实现
-`
+
+<pre><code>
 var axon     = require('pm2-axon');
 var rpc      = require('pm2-axon-rpc');
 var req      = axon.socket('req');
@@ -127,6 +134,6 @@ Client.prototype.call = function(name){
     }
   });
 };
-`
+</code></pre>
 
 

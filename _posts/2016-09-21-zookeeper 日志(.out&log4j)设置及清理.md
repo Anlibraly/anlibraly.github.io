@@ -1,6 +1,6 @@
 ---
 layout: post
-title: zookeeper 日志(zookeeper.out&log4j)配置及清理
+title: zookeeper日志配置及清理
 description: "zookeeper log out log4j"
 tags: [Node, zookeeper]
 comments: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 关于PM2 restart杀不死线上机器中的nightmare进程的源码追踪原因
+title: 关于PM2 restart nightmare错误
 description: "Pm2 restart nightmare"
 tags: [Node]
 image:

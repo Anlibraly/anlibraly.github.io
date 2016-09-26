@@ -3,8 +3,6 @@ layout: post
 title: 关于PM2 restart nightmare错误
 description: "Pm2 restart nightmare"
 tags: [Node]
-image:
-  background: xiamen-01.jpg
 comments: true
 share: true
 ---

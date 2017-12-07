@@ -75,11 +75,12 @@ demo代码如下：
 
 ![流程][4]
 
-查看[strong(包地址)](https://www.npmjs.com/package/node-zoodubbo)
+查看[包地址](https://www.npmjs.com/package/node-zoodubbo)
 
-关于整个包及连接实现[strong(点击这里)](http://7xq7m2.com1.z0.glb.clouddn.com/%5B%E9%BB%84%E5%A4%A9%E7%AB%8B%5Dnodejs%E7%9B%B4%E8%BF%9Ejava%E6%9C%8D%E5%8A%A1%E5%8C%96%E6%96%B9%E6%A1%88%20-%20%E5%89%AF%E6%9C%AC.pptx)
+关于整个包及连接实现[点击这里](http://7xq7m2.com1.z0.glb.clouddn.com/%5B%E9%BB%84%E5%A4%A9%E7%AB%8B%5Dnodejs%E7%9B%B4%E8%BF%9Ejava%E6%9C%8D%E5%8A%A1%E5%8C%96%E6%96%B9%E6%A1%88%20-%20%E5%89%AF%E6%9C%AC.pptx)
 
 ## 带来的效果
+
 采用restapi方式调用黑名单接口时，该接口平常访问时延在27ms左右，高峰时接口时延159ms。
 
 采用dubbo长连接后，黑名单接口请求时延平均在3ms左右，高峰时任然不变。同时由于我们把ip的接口请求也自己本地化实现了一套，接口时延从（平常时75ms，高峰时368ms）降到如下情况
@@ -94,7 +95,7 @@ demo代码如下：
 
 在压测过程中，我的服务打点时间始终是正常的且只维持在30ms左右，开始怀疑是不是我们node框架koa2的问题，第二天我在单机使用ab测试了空koa框架发现单机可以到达3000qps，因此框架的qps是不成问题的。
 
-然后对动态接口的 ab结果最终单机真实qps为 240
+然后对接口的ab结果最终单机真实qps为 240.
 
 再次与运维讨论怀疑是负载均衡而非框架的问题。然后又去了解了我们的进程管理工具PM2其实也承担了对请求的负载分发的工作，虽然其底层采用RollIng算法并不是问题，但是 pm2对请求队列的消耗过程并非是 epoll 类似的做法。
 
